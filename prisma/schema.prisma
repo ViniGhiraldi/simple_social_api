@@ -23,7 +23,8 @@ model Users {
   posts Posts[]
   userPost PostsUsersOptions[]
   followerUser UsersFollows[] @relation("FollowerUser")
-  followingUser UsersFollows[] @relation("FollowingUser")
+  followedUser UsersFollows[] @relation("FollowedUser")
+  postComments PostsComments[]
 
   @@index([username, nickname, email])
 }
@@ -31,11 +32,12 @@ model Users {
 model UsersFollows {
   followerUser Users @relation("FollowerUser", fields: [followerUserId], references: [username])
   followerUserId String
-  followingUser Users @relation("FollowingUser", fields: [followingUserId], references: [username])
-  followingUserId String
+  followedUser Users @relation("FollowedUser", fields: [followedUserId], references: [username])
+  followedUserId String
+  createdAt DateTime @default(now())
 
-  @@id([followerUserId, followingUserId])
-  @@index([followerUserId, followingUserId])
+  @@id([followerUserId, followedUserId])
+  @@index([followerUserId, followedUserId])
 }
 
 model Posts {
@@ -46,29 +48,31 @@ model Posts {
   userId String
   createdAt DateTime @default(now())
   postUser PostsUsersOptions[]
+  postComments PostsComments[]
 
   @@index([id, title])
 }
 
 model PostsUsersOptions {
-  id Int @id @default(autoincrement())
   user Users @relation(fields: [userId], references: [username])
   userId String
   post Posts @relation(fields: [postId], references: [id])
   postId Int
   liked Boolean @default(false)
   favorited Boolean @default(false)
-  postsComments PostsComments[]
 
-  @@index([id, userId, postId, favorited])
+  @@id([userId, postId])
+  @@index([userId, postId, liked, favorited])
 }
 
 model PostsComments {
   id Int @id @default(autoincrement())
-  postUserOptions PostsUsersOptions @relation(fields: [postUserOptionsId], references: [id])
-  postUserOptionsId Int
+  user Users @relation(fields: [userId], references: [username])
+  userId String
+  post Posts @relation(fields: [postId], references: [id])
+  postId Int
   comment String
   createdAt DateTime @default(now())
 
-  @@index([id, postUserOptionsId, comment])
+  @@index([id, userId, postId, comment])
 }
