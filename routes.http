@@ -1,2 +1,23 @@
-# @name get-default
-GET http://localhost:3333/
+# @name sign-up
+POST http://localhost:3333/signup
+Content-Type: application/json
+
+{
+    "username": "Endrick9",
+    "nickname": "Endrick",
+    "email": "endrick@contato.com",
+    "password": "123456",
+    "profilePicture": "{}",
+    "banner": "{}",
+    "description": "Sou o Endrick! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
+}
+
+###
+
+# @name get-users
+GET http://localhost:3333/users?page=1
+
+###
+
+# @name get-user
+GET http://localhost:3333/user/vinighiraldi

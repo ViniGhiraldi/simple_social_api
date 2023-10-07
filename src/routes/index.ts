@@ -1,8 +1,13 @@
 import { Router } from 'express';
-import { usersController } from '../../controllers';
+import { usersController, authController } from '../controllers';
 
 const routes = Router();
 
-routes.get('/getUsers', usersController.getUsers)
+//auth
+routes.post('/signup', authController.signUp);
+
+//users
+routes.get('/users', usersController.getUsers)
+routes.get('/user/:uniquekey', usersController.getUserByUnique)
 
 export default routes;
