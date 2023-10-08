@@ -20,4 +20,25 @@ GET http://localhost:3333/users?page=1
 ###
 
 # @name get-user
-GET http://localhost:3333/user/vinighiraldi
+GET http://localhost:3333/user/Endrick9
+
+###
+
+# @name update-user
+PUT http://localhost:3333/user/Endrick9
+Content-Type: application/json
+
+{
+    "username": "Endrick",
+    "nickname": "Endrick 'Little'",
+    "email": "endrick@contato.com",
+    "password": "123456",
+    "profilePicture": "{}",
+    "banner": "{}",
+    "description": "Sou o Endrick! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
+}
+
+###
+
+# @name delete-user
+DELETE http://localhost:3333/user/Rodrygo11

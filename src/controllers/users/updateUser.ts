@@ -1,5 +1,7 @@
 import { RequestHandler } from "express";
 import { z } from 'zod';
+import { prisma } from "../../lib/prisma";
+import { StatusCodes } from "http-status-codes";
 
 export const updateUser: RequestHandler = async (req, res) => {
     const paramsValidation = z.object({
@@ -18,4 +20,18 @@ export const updateUser: RequestHandler = async (req, res) => {
     })
 
     const user = bodyValidation.parse(req.body);
+
+    try {
+        const data = await prisma.users.update({
+            where: {
+                username: username
+            },
+            data: user
+        })
+
+        return res.status(StatusCodes.OK).json({data})
+    } catch (error) {
+        console.log(error)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
+    }
 }
