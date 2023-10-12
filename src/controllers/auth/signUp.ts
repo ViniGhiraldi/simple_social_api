@@ -6,7 +6,7 @@ import { prisma } from "../../lib/prisma";
 
 export const signUp: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        username: z.string().min(3).max(20),
+        username: z.string().min(3).max(20).toLowerCase(),
         nickname: z.string().min(3).max(30),
         email: z.string().email(),
         password: z.string().min(6),

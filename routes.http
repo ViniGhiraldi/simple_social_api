@@ -3,13 +3,13 @@ POST http://localhost:3333/signup
 Content-Type: application/json
 
 {
-    "username": "Endrick9",
-    "nickname": "Endrick",
-    "email": "endrick@contato.com",
+    "username": "Tite",
+    "nickname": "tite",
+    "email": "tite@contato.com",
     "password": "123456",
     "profilePicture": "{}",
     "banner": "{}",
-    "description": "Sou o Endrick! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
+    "description": "Sou o Tite! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
 }
 
 ###
@@ -41,4 +41,37 @@ Content-Type: application/json
 ###
 
 # @name delete-user
-DELETE http://localhost:3333/user/Rodrygo11
+DELETE http://localhost:3333/user/tite
+
+###
+
+# @name create-follow
+POST http://localhost:3333/follow
+Content-Type: application/json
+
+{
+    "follower": "Endrick9",
+    "followed": "moledo"
+}
+
+###
+
+# @name delete-follow
+DELETE http://localhost:3333/follow
+Content-Type: application/json
+
+{
+    "follower": "molferferedo",
+    "followed": "wfrfer"
+}
+
+###
+
+# @name create-post
+POST http://localhost:3333/post
+Content-Type: application/json
+
+{
+    "title": "Meu primeiro Post!",
+    "userId": "Tite"
+}
