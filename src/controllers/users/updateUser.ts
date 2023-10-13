@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 export const updateUser: RequestHandler = async (req, res) => {
     const paramsValidation = z.object({
-        username: z.string()
+        username: z.string().toLowerCase()
     })
 
     const { username } = paramsValidation.parse(req.params);

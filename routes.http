@@ -79,5 +79,36 @@ Content-Type: application/json
 
 {
     "title": "Meu primeiro Post!",
-    "userId": "Tite"
+    "userId": "vinighiraldi"
+}
+
+###
+
+# @name delete-post
+DELETE http://localhost:3333/post/7
+
+###
+
+# @name create-options
+POST http://localhost:3333/options
+Content-Type: application/json
+
+{
+    "userId": "Vinighiraldi",
+    "postId": 1,
+    "liked": true,
+    "favorited": true
+}
+
+###
+
+# @name update-options
+PUT http://localhost:3333/options
+Content-Type: application/json
+
+{
+    "userId": "Moledo",
+    "postId": 1,
+    "favorited": false,
+    "liked": false
 }

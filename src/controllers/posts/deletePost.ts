@@ -3,17 +3,17 @@ import { z } from "zod";
 import { prisma } from "../../lib/prisma";
 import { StatusCodes } from "http-status-codes";
 
-export const deleteUser: RequestHandler = async (req, res) => {
+export const deletePost: RequestHandler = async (req, res) => {
     const paramsValidation = z.object({
-        username: z.string().toLowerCase()
+        id: z.string().transform(val => parseInt(val))
     })
 
-    const { username } = paramsValidation.parse(req.params);
+    const { id } = paramsValidation.parse(req.params)
 
     try {
-        await prisma.users.delete({
+        await prisma.posts.delete({
             where: {
-                username: username
+                id: id
             }
         })
 

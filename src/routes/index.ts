@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { usersController, authController, usersFollowsController, postsController } from '../controllers';
+import { usersController, authController, usersFollowsController, postsController, postUserOptionsController, postUserCommentsController } from '../controllers';
 
 const routes = Router();
 
@@ -18,5 +18,14 @@ routes.delete('/follow', usersFollowsController.deleteFollow)
 
 //posts
 routes.post('/post', postsController.createPost)
+routes.delete('/post/:id', postsController.deletePost)
+
+//post-user-options
+routes.post('/options', postUserOptionsController.createOptions)
+routes.put('/options', postUserOptionsController.updateOptions)
+
+//post-user-comments
+routes.post('/comment', postUserCommentsController.createComment)
+routes.delete('/comment/:id', postUserCommentsController.deleteComment)
 
 export default routes;

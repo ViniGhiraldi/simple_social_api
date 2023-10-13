@@ -1,12 +1,12 @@
-import { prisma } from './../../lib/prisma';
+import { prisma } from './../../../lib/prisma';
 import { RequestHandler } from "express";
 import { StatusCodes } from 'http-status-codes';
 import { z } from "zod";
 
 export const createFollow: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        follower: z.string(),
-        followed: z.string()
+        follower: z.string().toLowerCase(),
+        followed: z.string().toLowerCase()
     })
 
     const { follower, followed } = bodyValidation.parse(req.body)
