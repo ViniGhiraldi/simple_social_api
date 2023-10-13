@@ -10,6 +10,16 @@ export const getUserByUnique: RequestHandler = async (req, res) => {
 
     const { uniquekey } = paramsSchema.parse(req.params);
 
+    const bodyValidation = z.object({
+        posts: z.boolean().default(false),
+        follower: z.boolean().default(false),
+        followed: z.boolean().default(false),
+        comments: z.boolean().default(false),
+        options: z.boolean().default(false)
+    })
+
+    const { posts, follower, followed, comments, options } = bodyValidation.parse(req.body)
+
     try {
         const data = await prisma.users.findFirst({
             where: {
@@ -27,7 +37,12 @@ export const getUserByUnique: RequestHandler = async (req, res) => {
                 ]
             },
             include: {
-                _count: true
+                _count: true,
+                posts: posts,
+                followerUser: follower,
+                followedUser: followed,
+                postComments: comments,
+                userPost: options
             }
         })
 

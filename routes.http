@@ -16,6 +16,12 @@ Content-Type: application/json
 
 # @name get-users
 GET http://localhost:3333/users?page=1
+Content-Type: application/json
+
+{
+    "posts": true,
+    "followed": true
+}
 
 ###
 

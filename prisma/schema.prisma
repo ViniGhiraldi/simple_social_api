@@ -30,9 +30,9 @@ model Users {
 }
 
 model UsersFollows {
-  followerUser Users @relation("FollowerUser", fields: [followerUserId], references: [username])
+  followerUser Users @relation("FollowerUser", fields: [followerUserId], references: [username], onDelete: Cascade)
   followerUserId String
-  followedUser Users @relation("FollowedUser", fields: [followedUserId], references: [username])
+  followedUser Users @relation("FollowedUser", fields: [followedUserId], references: [username], onDelete: Cascade)
   followedUserId String
   createdAt DateTime @default(now())
 
@@ -44,7 +44,7 @@ model Posts {
   id Int @id @default(autoincrement())
   media Json?
   title String
-  user Users @relation(fields: [userId], references: [username])
+  user Users @relation(fields: [userId], references: [username], onDelete: Cascade)
   userId String
   createdAt DateTime @default(now())
   postUser PostsUsersOptions[]
@@ -54,9 +54,9 @@ model Posts {
 }
 
 model PostsUsersOptions {
-  user Users @relation(fields: [userId], references: [username])
+  user Users @relation(fields: [userId], references: [username], onDelete: Cascade)
   userId String
-  post Posts @relation(fields: [postId], references: [id])
+  post Posts @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId Int
   liked Boolean @default(false)
   favorited Boolean @default(false)
@@ -67,9 +67,9 @@ model PostsUsersOptions {
 
 model PostsComments {
   id Int @id @default(autoincrement())
-  user Users @relation(fields: [userId], references: [username])
+  user Users @relation(fields: [userId], references: [username], onDelete: Cascade)
   userId String
-  post Posts @relation(fields: [postId], references: [id])
+  post Posts @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId Int
   comment String
   createdAt DateTime @default(now())
