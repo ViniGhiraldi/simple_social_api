@@ -78,9 +78,14 @@ POST http://localhost:3333/post
 Content-Type: application/json
 
 {
-    "title": "Meu primeiro Post!",
-    "userId": "vinighiraldi"
+    "title": "Calma ai calabreso",
+    "userId": "moledo"
 }
+
+###
+
+# @name get-posts
+GET http://localhost:3333/posts
 
 ###
 
@@ -112,3 +117,20 @@ Content-Type: application/json
     "favorited": false,
     "liked": false
 }
+
+###
+
+# @name create-comment
+POST http://localhost:3333/comment
+Content-Type: application/json
+
+{
+    "userId": "diegobau",
+    "postId": 1,
+    "comment": "Boraaaaaaa"
+}
+
+###
+
+# @name delete-comment
+DELETE http://localhost:3333/comment/10
