@@ -89,6 +89,11 @@ GET http://localhost:3333/posts
 
 ###
 
+# @name get-posts-by-user
+GET http://localhost:3333/posts/111
+
+###
+
 # @name delete-post
 DELETE http://localhost:3333/post/7
 
