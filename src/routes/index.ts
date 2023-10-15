@@ -18,6 +18,7 @@ routes.delete('/follow', usersFollowsController.deleteFollow)
 
 //posts
 routes.post('/post', postsController.createPost)
+routes.get('/feed/:username', postsController.getFeed)
 routes.get('/posts', postsController.getPosts)
 routes.get('/posts/:username', postsController.getPostsByUser)
 routes.get('/post/:id', postsController.getPostById)

@@ -1,3 +1,4 @@
+import { getFeed } from './getFeed';
 import { getPostsByUser } from './getPostsByUser';
 import { getPostById } from './getPostById';
 import { getPosts } from './getPosts';
@@ -9,5 +10,6 @@ export const postsController = {
     deletePost,
     getPosts,
     getPostsByUser,
-    getPostById
+    getPostById,
+    getFeed
 }

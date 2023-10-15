@@ -26,7 +26,7 @@ Content-Type: application/json
 ###
 
 # @name get-user
-GET http://localhost:3333/user/Endrick9
+GET http://localhost:3333/user/Vinighiraldi
 
 ###
 
@@ -56,8 +56,8 @@ POST http://localhost:3333/follow
 Content-Type: application/json
 
 {
-    "follower": "Endrick9",
-    "followed": "moledo"
+    "follower": "vinighiraldi",
+    "followed": "diegobau"
 }
 
 ###
@@ -78,8 +78,8 @@ POST http://localhost:3333/post
 Content-Type: application/json
 
 {
-    "title": "Calma ai calabreso",
-    "userId": "moledo"
+    "title": "Eai, Diegão aqui!",
+    "userId": "diegobau"
 }
 
 ###
@@ -96,6 +96,16 @@ GET http://localhost:3333/posts/vinighiraldi
 
 # @name get-post-by-id
 GET http://localhost:3333/post/1
+
+###
+
+# @name get-feed
+GET http://localhost:3333/feed/diegobau
+Content-Type: application/json
+
+{
+    "onlyfriends": false
+}
 
 ###
 
