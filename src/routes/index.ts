@@ -20,6 +20,7 @@ routes.delete('/follow', usersFollowsController.deleteFollow)
 routes.post('/post', postsController.createPost)
 routes.get('/posts', postsController.getPosts)
 routes.get('/posts/:username', postsController.getPostsByUser)
+routes.get('/post/:id', postsController.getPostById)
 routes.delete('/post/:id', postsController.deletePost)
 
 //post-user-options

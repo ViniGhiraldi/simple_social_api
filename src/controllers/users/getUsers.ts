@@ -28,6 +28,9 @@ export const getUsers: RequestHandler = async (req, res) => {
         const data = await prisma.users.findMany({
             skip: offset,
             take: limit,
+            orderBy: {
+                username: 'asc'
+            },
             where: {
                 OR: [
                     {

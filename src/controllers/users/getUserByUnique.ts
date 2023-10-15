@@ -21,12 +21,12 @@ export const getUserByUnique: RequestHandler = async (req, res) => {
     const { posts, follower, followed, comments, options } = bodyValidation.parse(req.body)
 
     try {
-        const data = await prisma.users.findFirst({
+        const data = await prisma.users.findFirstOrThrow({
             where: {
                 OR: [
                     {
                         username: {
-                            equals: uniquekey
+                            equals: uniquekey.toLowerCase()
                         }
                     },
                     {

@@ -18,6 +18,9 @@ export const getPosts: RequestHandler = async (req, res) => {
         const data = await prisma.posts.findMany({
             skip: offset,
             take: limit,
+            orderBy: {
+                createdAt: 'desc'
+            },
             where: {
                 OR: [
                     {

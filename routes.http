@@ -15,7 +15,7 @@ Content-Type: application/json
 ###
 
 # @name get-users
-GET http://localhost:3333/users?page=1
+GET http://localhost:3333/users?page=1&filter=e
 Content-Type: application/json
 
 {
@@ -90,7 +90,12 @@ GET http://localhost:3333/posts
 ###
 
 # @name get-posts-by-user
-GET http://localhost:3333/posts/111
+GET http://localhost:3333/posts/vinighiraldi
+
+###
+
+# @name get-post-by-id
+GET http://localhost:3333/post/1
 
 ###
 
