@@ -5,6 +5,7 @@ const routes = Router();
 
 //auth
 routes.post('/signup', authController.signUp);
+routes.post('/signin', authController.signIn);
 
 //users
 routes.get('/users', usersController.getUsers)

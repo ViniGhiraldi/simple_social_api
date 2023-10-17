@@ -3,6 +3,7 @@ import { RequestHandler } from "express";
 import { StatusCodes } from 'http-status-codes';
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
+import { passwordHashed } from '../../services/crypto';
 
 export const signUp: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
@@ -16,6 +17,8 @@ export const signUp: RequestHandler = async (req, res) => {
     })
 
     const user = bodyValidation.parse(req.body);
+
+    user.password = await passwordHashed(user.password);
 
     try {
         const data = await prisma.users.create({
