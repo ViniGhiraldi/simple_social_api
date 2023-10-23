@@ -5,13 +5,14 @@ import { z } from 'zod';
 
 export const updateOptions: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        userId: z.string().toLowerCase(),
+        /* userId: z.string().toLowerCase(), */
         postId: z.number().int(),
         liked: z.boolean().optional(),
         favorited: z.boolean().optional()
     })
 
-    const { userId, postId, ...postUserOptions } = bodyValidation.parse(req.body)
+    const { postId, ...postUserOptions } = bodyValidation.parse(req.body)
+    const userId = req.headers.userId as string
 
     try {
         const data = await prisma.postsUsersOptions.update({

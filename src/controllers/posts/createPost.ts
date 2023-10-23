@@ -7,14 +7,14 @@ export const createPost: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
         media: z.string().optional().transform(val => val && JSON.parse(val)),
         title: z.string(),
-        userId: z.string().toLowerCase()
+        /* userId: z.string().toLowerCase() */
     })
 
     const post = bodyValidation.parse(req.body)
 
     try {
         const data = await prisma.posts.create({
-            data: post
+            data: {...post, userId: req.headers.userId as string}
         })
 
         return res.status(StatusCodes.CREATED).json({data})

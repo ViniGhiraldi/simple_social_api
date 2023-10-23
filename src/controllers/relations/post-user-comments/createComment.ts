@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 
 export const createComment: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        userId: z.string().toLowerCase(),
+        /* userId: z.string().toLowerCase(), */
         postId: z.number().int(),
         comment: z.string()
     })
@@ -14,7 +14,7 @@ export const createComment: RequestHandler = async (req, res) => {
 
     try {
         const data = await prisma.postsComments.create({
-            data: comment
+            data: {...comment, userId: req.headers.userId as string}
         })
 
         return res.status(StatusCodes.CREATED).json({data})

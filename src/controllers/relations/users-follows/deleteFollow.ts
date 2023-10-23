@@ -5,11 +5,12 @@ import { StatusCodes } from "http-status-codes";
 
 export const deleteFollow: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        follower: z.string().toLowerCase(),
+        /* follower: z.string().toLowerCase(), */
         followed: z.string().toLowerCase()
     })
 
-    const { follower, followed } = bodyValidation.parse(req.body)
+    const { followed } = bodyValidation.parse(req.body)
+    const follower = req.headers.userId as string
 
     try {
         await prisma.usersFollows.delete({

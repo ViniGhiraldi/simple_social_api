@@ -4,12 +4,6 @@ import { prisma } from "../../lib/prisma";
 import { StatusCodes } from "http-status-codes";
 
 export const updateUser: RequestHandler = async (req, res) => {
-    const paramsValidation = z.object({
-        username: z.string().toLowerCase()
-    })
-
-    const { username } = paramsValidation.parse(req.params);
-
     const bodyValidation = z.object({
         nickname: z.string().min(3).max(30),
         email: z.string().email(),
@@ -18,8 +12,9 @@ export const updateUser: RequestHandler = async (req, res) => {
         banner: z.string().transform(val => JSON.parse(val)),
         description: z.string().optional()
     })
-
+    
     const user = bodyValidation.parse(req.body);
+    const username = req.headers.userId as string
 
     try {
         const data = await prisma.users.update({

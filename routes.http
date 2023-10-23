@@ -3,13 +3,13 @@ POST http://localhost:3333/signup
 Content-Type: application/json
 
 {
-    "username": "Tite",
-    "nickname": "tite",
-    "email": "tite@contato.com",
+    "username": "locoabreu",
+    "nickname": "Louco Abreu",
+    "email": "locoabreu@contato.com",
     "password": "123456",
     "profilePicture": "{}",
     "banner": "{}",
-    "description": "Sou o Tite! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
+    "description": "Louco Abreu aqui! yeye"
 }
 
 ###
@@ -19,14 +19,14 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "tite@contato.com",
+    "uniquekey": "locoabreu@contato.com",
     "password": "123456"
 }
 
 ###
 
 # @name get-users
-GET http://localhost:3333/users?page=1&filter=e
+GET http://localhost:3333/users?page=1&filter=
 Content-Type: application/json
 
 {
@@ -44,6 +44,7 @@ GET http://localhost:3333/user/Vinighiraldi
 # @name update-user
 PUT http://localhost:3333/user/Endrick9
 Content-Type: application/json
+Authorization: Bearer
 
 {
     "username": "Endrick",
@@ -59,15 +60,16 @@ Content-Type: application/json
 
 # @name delete-user
 DELETE http://localhost:3333/user/tite
+Authorization: Bearer
 
 ###
 
 # @name create-follow
 POST http://localhost:3333/follow
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4MDk3NDUwLCJleHAiOjE2OTgwOTc1NzB9.u-vKdjHW8_BcTjEWozVB_WckldLA8EnxdcVR9ZHniw4
 
 {
-    "follower": "vinighiraldi",
     "followed": "diegobau"
 }
 
@@ -76,6 +78,7 @@ Content-Type: application/json
 # @name delete-follow
 DELETE http://localhost:3333/follow
 Content-Type: application/json
+Authorization: Bearer
 
 {
     "follower": "molferferedo",
@@ -87,10 +90,10 @@ Content-Type: application/json
 # @name create-post
 POST http://localhost:3333/post
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4MDk3NDUwLCJleHAiOjE2OTgwOTc1NzB9.u-vKdjHW8_BcTjEWozVB_WckldLA8EnxdcVR9ZHniw4
 
 {
-    "title": "Eai, Diegão aqui!",
-    "userId": "diegobau"
+    "title": "Salve salve, este comentário foi criado com a autenticação já implementada!"
 }
 
 ###
@@ -122,12 +125,14 @@ Content-Type: application/json
 
 # @name delete-post
 DELETE http://localhost:3333/post/7
+Authorization: Bearer
 
 ###
 
 # @name create-options
 POST http://localhost:3333/options
 Content-Type: application/json
+Authorization: Bearer
 
 {
     "userId": "Vinighiraldi",
@@ -141,6 +146,7 @@ Content-Type: application/json
 # @name update-options
 PUT http://localhost:3333/options
 Content-Type: application/json
+Authorization: Bearer
 
 {
     "userId": "Moledo",
@@ -154,14 +160,15 @@ Content-Type: application/json
 # @name create-comment
 POST http://localhost:3333/comment
 Content-Type: application/json
+Authorization: Bearer
 
 {
-    "userId": "diegobau",
     "postId": 1,
-    "comment": "Boraaaaaaa"
+    "comment": "Loco abreu comentou neste post"
 }
 
 ###
 
 # @name delete-comment
 DELETE http://localhost:3333/comment/10
+Authorization: Bearer

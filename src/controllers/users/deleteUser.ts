@@ -4,11 +4,7 @@ import { prisma } from "../../lib/prisma";
 import { StatusCodes } from "http-status-codes";
 
 export const deleteUser: RequestHandler = async (req, res) => {
-    const paramsValidation = z.object({
-        username: z.string().toLowerCase()
-    })
-
-    const { username } = paramsValidation.parse(req.params);
+    const username = req.headers.userId as string
 
     try {
         await prisma.users.delete({

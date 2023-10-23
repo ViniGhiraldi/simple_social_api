@@ -5,11 +5,12 @@ import { z } from "zod";
 
 export const createFollow: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        follower: z.string().toLowerCase(),
+        /* follower: z.string().toLowerCase(), */
         followed: z.string().toLowerCase()
     })
 
-    const { follower, followed } = bodyValidation.parse(req.body)
+    const { followed } = bodyValidation.parse(req.body)
+    const follower = req.headers.userId as string
 
     try {
         const data = await prisma.usersFollows.create({
