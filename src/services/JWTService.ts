@@ -8,7 +8,7 @@ interface IJwtData {
 export const generateToken = (data: IJwtData, isRefreshToken = false) => {
     if(!process.env.JWT_SECRET) return 'JWT_SECRET_NOT_FOUND';
 
-    const expiresIn = isRefreshToken ? '24h' : '120s';
+    const expiresIn = isRefreshToken ? '48h' : '1h';
 
     return jwt.sign(data, process.env.JWT_SECRET, {expiresIn});
 }

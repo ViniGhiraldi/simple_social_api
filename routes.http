@@ -25,6 +25,14 @@ Content-Type: application/json
 
 ###
 
+# @name refresh-token
+
+POST http://localhost:3333/refreshtoken
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4MTAyOTA3LCJleHAiOjE2OTgyNzU3MDd9.iuoAhVTyjJgn-WPrFxmhH-nTSZKV4YvkaKkllLBR8Vw
+
+###
+
 # @name get-users
 GET http://localhost:3333/users?page=1&filter=
 Content-Type: application/json

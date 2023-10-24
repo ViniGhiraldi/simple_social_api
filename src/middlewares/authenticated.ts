@@ -1,3 +1,4 @@
+import { StatusEnum } from './../enums/statusEnum';
 import { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
 import { verifyToken } from "../services/JWTService";
@@ -19,6 +20,7 @@ export const authenticated: RequestHandler = async (req, res, next) => {
     }
 
     req.headers.userId = tokenResult.username;
+    req.headers.userEmail = tokenResult.email;
 
     return next();
 }
