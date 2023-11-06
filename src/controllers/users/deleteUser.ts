@@ -1,5 +1,4 @@
 import { RequestHandler } from "express";
-import { z } from "zod";
 import { prisma } from "../../lib/prisma";
 import { StatusCodes } from "http-status-codes";
 

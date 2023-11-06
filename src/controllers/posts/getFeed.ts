@@ -95,7 +95,13 @@ export const getFeed: RequestHandler = async (req, res) => {
                     _count: true,
                     postComments: true,
                     postUser: true,
-                    user: true
+                    user: {
+                        select: {
+                            username: true,
+                            nickname: true,
+                            profilePicture: true
+                        }
+                    }
                 }
             })
         }

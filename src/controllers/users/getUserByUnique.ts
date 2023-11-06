@@ -5,7 +5,7 @@ import { prisma } from "../../lib/prisma";
 
 export const getUserByUnique: RequestHandler = async (req, res) => {
     const paramsSchema = z.object({
-        uniquekey: z.string()
+        uniquekey: z.string().toLowerCase()
     })
 
     const { uniquekey } = paramsSchema.parse(req.params);
@@ -26,7 +26,7 @@ export const getUserByUnique: RequestHandler = async (req, res) => {
                 OR: [
                     {
                         username: {
-                            equals: uniquekey.toLowerCase()
+                            equals: uniquekey
                         }
                     },
                     {

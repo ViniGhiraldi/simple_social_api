@@ -7,7 +7,7 @@ const routes = Router();
 //auth
 routes.post('/signup', authController.signUp);
 routes.post('/signin', authController.signIn);
-routes.post('/refreshtoken', authController.refreshToken);
+routes.post('/refreshtoken', authenticated, authController.refreshToken);
 
 //users
 routes.get('/users', usersController.getUsers)

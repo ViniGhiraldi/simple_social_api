@@ -8,7 +8,7 @@ import { StatusEnum } from '../../enums/statusEnum'
 
 export const signIn: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        uniquekey: z.string(),
+        uniquekey: z.string().toLowerCase(),
         password: z.string()
     })
 
@@ -18,12 +18,21 @@ export const signIn: RequestHandler = async (req, res) => {
         where: {
             OR: [
                 {
-                    username: uniquekey.toLowerCase()
+                    username: uniquekey
                 },
                 {
                     email: uniquekey
                 }
             ]
+        },
+        select: {
+            username: true,
+            nickname: true,
+            email: true,
+            profilePicture: true,
+            password: true,
+            description: true,
+            banner: true
         }
     })
 
@@ -39,5 +48,5 @@ export const signIn: RequestHandler = async (req, res) => {
 
     if(accessToken === 'JWT_SECRET_NOT_FOUND' || refreshToken === 'JWT_SECRET_NOT_FOUND') return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: {default: StatusEnum.INTERNAL_SERVER_ERROR}});
 
-    return res.status(StatusCodes.ACCEPTED).json({accessToken, refreshToken});
+    return res.status(StatusCodes.ACCEPTED).json({accessToken, refreshToken, user: {...user, password: undefined}});
 }

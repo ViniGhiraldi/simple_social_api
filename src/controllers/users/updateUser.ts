@@ -6,7 +6,7 @@ import { StatusCodes } from "http-status-codes";
 export const updateUser: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
         nickname: z.string().min(3).max(30),
-        email: z.string().email(),
+        email: z.string().email().toLowerCase(),
         password: z.string().min(6),
         profilePicture: z.string().transform(val => JSON.parse(val)),
         banner: z.string().transform(val => JSON.parse(val)),
