@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 
 export const createPost: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        media: z.string().optional().transform(val => val && JSON.parse(val)),
+        media: z.string().optional(),
         title: z.string(),
         /* userId: z.string().toLowerCase() */
     })

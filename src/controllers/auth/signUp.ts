@@ -11,8 +11,8 @@ export const signUp: RequestHandler = async (req, res) => {
         nickname: z.string().min(3).max(30),
         email: z.string().email().toLowerCase(),
         password: z.string().min(6),
-        profilePicture: z.string().transform(val => JSON.parse(val)),
-        banner: z.string().transform(val => JSON.parse(val)),
+        profilePicture: z.string().optional(),
+        banner: z.string().optional(),
         description: z.string().optional()
     })
 

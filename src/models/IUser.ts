@@ -3,7 +3,7 @@ export interface IUser {
     nickname: string;
     email: string;
     password: string;
-    profilePicture: JSON;
-    banner: JSON;
+    profilePicture?: string;
+    banner?: string;
     description?: string;
 }

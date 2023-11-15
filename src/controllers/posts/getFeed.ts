@@ -10,11 +10,11 @@ export const getFeed: RequestHandler = async (req, res) => {
 
     const { username } = paramsValidation.parse(req.params)
 
-    const bodyValidation = z.object({
-        onlyfriends: z.boolean().default(false)
+    const queryValidation = z.object({
+        onlyfriends: z.string().transform(val => val === 'true' ? true : false).optional()
     })
 
-    const { onlyfriends } = bodyValidation.parse(req.body)
+    const { onlyfriends } = queryValidation.parse(req.query)
 
     const querySchema = z.object({
         page: z.string().default('1')

@@ -15,8 +15,8 @@ model Users {
   nickname String
   email String @unique
   password String
-  profilePicture Json
-  banner Json
+  profilePicture String?
+  banner String?
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -42,7 +42,7 @@ model UsersFollows {
 
 model Posts {
   id Int @id @default(autoincrement())
-  media Json?
+  media String?
   title String
   user Users @relation(fields: [userId], references: [username], onDelete: Cascade)
   userId String

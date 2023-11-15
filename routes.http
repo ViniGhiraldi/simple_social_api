@@ -3,13 +3,13 @@ POST http://localhost:3333/signup
 Content-Type: application/json
 
 {
-    "username": "locoabreu",
-    "nickname": "Louco Abreu",
-    "email": "locoabreu@contato.com",
+    "username": "profguanabara",
+    "nickname": "Gustavo Guanabara",
+    "email": "guanabara@email.com",
     "password": "123456",
-    "profilePicture": "{}",
-    "banner": "{}",
-    "description": "Louco Abreu aqui! yeye"
+    "profilePicture": "https://github.com/professorguanabara.png",
+    //"banner": "",
+    "description": "Nerd por natureza. Professor por vocação. Estou aqui para compartilhar conteúdos para iniciantes em Tecnologia."
 }
 
 ###
@@ -19,7 +19,7 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "locoabreu@contato.com",
+    "uniquekey": "vinighiraldi",
     "password": "123456"
 }
 
@@ -29,23 +29,18 @@ Content-Type: application/json
 
 POST http://localhost:3333/refreshtoken
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4NTE5MDI4LCJleHAiOjE2OTg2OTE4Mjh9.kvLwGtFwOAVEnA-xj6tj2Pmq4UPL4MqpZwsxBhUv7i0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk5OTE5OTc4LCJleHAiOjE3MDAwOTI3Nzh9.XN2O3otmzftq7-TqLAtAIgFakuaZqkNm_NtBWXRcwfc
 
 ###
 
 # @name get-users
-GET http://localhost:3333/users?page=1&filter=
+GET http://localhost:3333/users?page=1&filter=&posts=true&followed=true
 Content-Type: application/json
-
-{
-    "posts": true,
-    "followed": true
-}
 
 ###
 
 # @name get-user
-GET http://localhost:3333/user/Vinighiraldi
+GET http://localhost:3333/user/locoabreu?posts=true
 
 ###
 
@@ -75,10 +70,10 @@ Authorization: Bearer
 # @name create-follow
 POST http://localhost:3333/follow
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4MDk3NDUwLCJleHAiOjE2OTgwOTc1NzB9.u-vKdjHW8_BcTjEWozVB_WckldLA8EnxdcVR9ZHniw4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx2c291emEiLCJlbWFpbCI6Imx2c291emFAZW1haWwuY29tIiwiaWF0IjoxNzAwMDExMTcwLCJleHAiOjE3MDAwMTQ3NzB9.E5szpmusExnAJKIRxxcAPadn_zXBQ3UhYQ86oQkRjRg
 
 {
-    "followed": "diegobau"
+    "followed": "profguanabara"
 }
 
 ###
@@ -98,10 +93,10 @@ Authorization: Bearer
 # @name create-post
 POST http://localhost:3333/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk4MDk3NDUwLCJleHAiOjE2OTgwOTc1NzB9.u-vKdjHW8_BcTjEWozVB_WckldLA8EnxdcVR9ZHniw4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpbmlnaGlyYWxkaSIsImVtYWlsIjoidmluaWdoaXJhbGRpQGVtYWlsLmNvbSIsImlhdCI6MTcwMDAxMTk2NywiZXhwIjoxNzAwMDE1NTY3fQ.2un82FUGz5Z56KZjjgI4_m_4Cuga3f6Ig3qhkfUNoxQ
 
 {
-    "title": "Salve salve, este comentário foi criado com a autenticação já implementada!"
+    "title": "Eai pessoal, sou o Vini e estou desenvolvendo a Simple Social, um ambiente onde todos podem se conectar de uma forma muito simples! Espero que gostem da plataforma."
 }
 
 ###
@@ -122,12 +117,8 @@ GET http://localhost:3333/post/1
 ###
 
 # @name get-feed
-GET http://localhost:3333/feed/diegobau
+GET http://localhost:3333/feed/locoabreu?onlyfriends=
 Content-Type: application/json
-
-{
-    "onlyfriends": false
-}
 
 ###
 

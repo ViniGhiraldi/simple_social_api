@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Posts" ALTER COLUMN "media" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Users" ALTER COLUMN "profilePicture" DROP NOT NULL,
+ALTER COLUMN "profilePicture" SET DATA TYPE TEXT,
+ALTER COLUMN "banner" DROP NOT NULL,
+ALTER COLUMN "banner" SET DATA TYPE TEXT;

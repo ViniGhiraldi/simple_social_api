@@ -11,15 +11,15 @@ export const getUsers: RequestHandler = async (req, res) => {
 
     const { filter, page } = querySchema.parse(req.query);
 
-    const bodyValidation = z.object({
-        posts: z.boolean().default(false),
-        follower: z.boolean().default(false),
-        followed: z.boolean().default(false),
-        comments: z.boolean().default(false),
-        options: z.boolean().default(false)
+    const queryValidation = z.object({
+        posts: z.string().transform(val => val === 'true' ? true : false).optional(),
+        follower: z.string().transform(val => val === 'true' ? true : false).optional(),
+        followed: z.string().transform(val => val === 'true' ? true : false).optional(),
+        comments: z.string().transform(val => val === 'true' ? true : false).optional(),
+        options: z.string().transform(val => val === 'true' ? true : false).optional()
     })
 
-    const { posts, follower, followed, comments, options } = bodyValidation.parse(req.body)
+    const { posts, follower, followed, comments, options } = queryValidation.parse(req.query)
 
     const limit = parseInt(process.env.LIMIT as string)
     const offset = limit * (parseInt(page) - 1)
