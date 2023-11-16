@@ -19,7 +19,7 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "vinighiraldi",
+    "uniquekey": "profguanabara",
     "password": "123456"
 }
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 POST http://localhost:3333/refreshtoken
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvY29hYnJldSIsImVtYWlsIjoibG9jb2FicmV1QGNvbnRhdG8uY29tIiwiaWF0IjoxNjk5OTE5OTc4LCJleHAiOjE3MDAwOTI3Nzh9.XN2O3otmzftq7-TqLAtAIgFakuaZqkNm_NtBWXRcwfc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByb2ZndWFuYWJhcmEiLCJlbWFpbCI6Imd1YW5hYmFyYUBlbWFpbC5jb20iLCJpYXQiOjE3MDAwOTIyODIsImV4cCI6MTcwMDA5NTg4Mn0.GBcCCEPEMC9rrfO_IH3o7MxL4MS5cKrBL3GmWIIf-fc
 
 ###
 
@@ -117,7 +117,7 @@ GET http://localhost:3333/post/1
 ###
 
 # @name get-feed
-GET http://localhost:3333/feed/locoabreu?onlyfriends=
+GET http://localhost:3333/feed/profguanabara?onlyfriends=
 Content-Type: application/json
 
 ###
@@ -131,13 +131,12 @@ Authorization: Bearer
 # @name create-options
 POST http://localhost:3333/options
 Content-Type: application/json
-Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByb2ZndWFuYWJhcmEiLCJlbWFpbCI6Imd1YW5hYmFyYUBlbWFpbC5jb20iLCJpYXQiOjE3MDAwODU2ODAsImV4cCI6MTcwMDA4OTI4MH0.oA1eLyv1h1uwaCYxvun1j6Ba09e9HGMzURj4drWbfio
 
 {
-    "userId": "Vinighiraldi",
-    "postId": 1,
+    "postId": 5,
     "liked": true,
-    "favorited": true
+    "favorited": false
 }
 
 ###
@@ -145,13 +144,12 @@ Authorization: Bearer
 # @name update-options
 PUT http://localhost:3333/options
 Content-Type: application/json
-Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByb2ZndWFuYWJhcmEiLCJlbWFpbCI6Imd1YW5hYmFyYUBlbWFpbC5jb20iLCJpYXQiOjE3MDAwODU2ODAsImV4cCI6MTcwMDA4OTI4MH0.oA1eLyv1h1uwaCYxvun1j6Ba09e9HGMzURj4drWbfio
 
 {
-    "userId": "Moledo",
-    "postId": 1,
+    "postId": 5,
     "favorited": false,
-    "liked": false
+    "liked": true
 }
 
 ###
@@ -159,11 +157,11 @@ Authorization: Bearer
 # @name create-comment
 POST http://localhost:3333/comment
 Content-Type: application/json
-Authorization: Bearer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpbmlnaGlyYWxkaSIsImVtYWlsIjoidmluaWdoaXJhbGRpQGVtYWlsLmNvbSIsImlhdCI6MTcwMDA3NzIzMywiZXhwIjoxNzAwMDgwODMzfQ.zO75cGODAyAC6HlgfgDav4WdlYb84yKNRhNP8o69elo
 
 {
-    "postId": 1,
-    "comment": "Loco abreu comentou neste post"
+    "postId": 4,
+    "comment": "Massa Diegão! Vamos tirar o máximo dessas novas funcionalidades!"
 }
 
 ###

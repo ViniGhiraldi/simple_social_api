@@ -31,7 +31,11 @@ export const getPostsByUser: RequestHandler = async (req, res) => {
             },
             include: {
                 _count: true,
-                postComments: true,
+                postComments: {
+                    orderBy: {
+                        id: "desc"
+                    }
+                },
                 postUser: true,
             }
         })

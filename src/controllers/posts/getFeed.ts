@@ -57,9 +57,19 @@ export const getFeed: RequestHandler = async (req, res) => {
                 },
                 include: {
                     _count: true,
-                    postComments: true,
+                    postComments: {
+                        orderBy: {
+                            id: "desc"
+                        }
+                    },
                     postUser: true,
-                    user: true
+                    user: {
+                        select: {
+                            username: true,
+                            nickname: true,
+                            profilePicture: true
+                        }
+                    }
                 }
             })
         }else{
@@ -93,7 +103,11 @@ export const getFeed: RequestHandler = async (req, res) => {
                 },
                 include: {
                     _count: true,
-                    postComments: true,
+                    postComments: {
+                        orderBy: {
+                            id: "desc"
+                        }
+                    },
                     postUser: true,
                     user: {
                         select: {
