@@ -19,7 +19,7 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "profguanabara",
+    "uniquekey": "lvsouza",
     "password": "123456"
 }
 
@@ -157,11 +157,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InByb
 # @name create-comment
 POST http://localhost:3333/comment
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpbmlnaGlyYWxkaSIsImVtYWlsIjoidmluaWdoaXJhbGRpQGVtYWlsLmNvbSIsImlhdCI6MTcwMDA3NzIzMywiZXhwIjoxNzAwMDgwODMzfQ.zO75cGODAyAC6HlgfgDav4WdlYb84yKNRhNP8o69elo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx2c291emEiLCJlbWFpbCI6Imx2c291emFAZW1haWwuY29tIiwiaWF0IjoxNzAwMjMwNDkxLCJleHAiOjE3MDAyMzQwOTF9.bycAHGg3Y8jtv516EJSCv1ZmkUbUgoOmYkMNnY43d5E
 
 {
-    "postId": 4,
-    "comment": "Massa Diegão! Vamos tirar o máximo dessas novas funcionalidades!"
+    "postId": 6,
+    "comment": "Tava precisando desse vídeo kkkk"
 }
 
 ###

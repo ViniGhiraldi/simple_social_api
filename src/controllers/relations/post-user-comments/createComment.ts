@@ -14,7 +14,16 @@ export const createComment: RequestHandler = async (req, res) => {
 
     try {
         const data = await prisma.postsComments.create({
-            data: {...comment, userId: req.headers.userId as string}
+            data: {...comment, userId: req.headers.userId as string},
+            include: {
+                user: {
+                    select: {
+                        username: true,
+                        nickname: true,
+                        profilePicture: true
+                    }
+                }
+            }
         })
 
         return res.status(StatusCodes.CREATED).json({data})

@@ -104,6 +104,15 @@ export const getFeed: RequestHandler = async (req, res) => {
                 include: {
                     _count: true,
                     postComments: {
+                        include: {
+                            user: {
+                                select: {
+                                    username: true,
+                                    nickname: true,
+                                    profilePicture: true
+                                }
+                            }
+                        },
                         orderBy: {
                             id: "desc"
                         }

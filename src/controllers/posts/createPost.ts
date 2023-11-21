@@ -14,7 +14,17 @@ export const createPost: RequestHandler = async (req, res) => {
 
     try {
         const data = await prisma.posts.create({
-            data: {...post, userId: req.headers.userId as string}
+            data: {...post, userId: req.headers.userId as string},
+            include: {
+                _count: true,
+                user: {
+                    select: {
+                        username: true,
+                        nickname: true,
+                        profilePicture: true
+                    }
+                }
+            }
         })
 
         return res.status(StatusCodes.CREATED).json({data})
