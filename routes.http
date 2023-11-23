@@ -19,7 +19,7 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "lvsouza",
+    "uniquekey": "vini",
     "password": "123456"
 }
 

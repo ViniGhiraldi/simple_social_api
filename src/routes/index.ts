@@ -1,11 +1,17 @@
 import { authenticated } from './../middlewares/authenticated';
 import { Router } from 'express';
 import { usersController, authController, usersFollowsController, postsController, postUserOptionsController, postUserCommentsController } from '../controllers';
+import multer from 'multer';
+import multerConfig from './../lib/multer/config/multer';
 
 const routes = Router();
 
 //auth
-routes.post('/signup', authController.signUp);
+routes.post('/signup', multer(multerConfig).fields([{name: 'profilePicture', maxCount: 1}, {name: 'banner', maxCount: 1}]), authController.signUp);
+routes.post('/teste', multer(multerConfig).array('media'), (req, res) => {
+    console.log(req.files)
+    res.send();
+});
 routes.post('/signin', authController.signIn);
 routes.post('/refreshtoken', authenticated, authController.refreshToken);
 
@@ -20,7 +26,7 @@ routes.post('/follow', authenticated, usersFollowsController.createFollow)
 routes.delete('/follow', authenticated, usersFollowsController.deleteFollow)
 
 //posts
-routes.post('/post', authenticated, postsController.createPost)
+routes.post('/post', multer(multerConfig).array('media'), authenticated, postsController.createPost)
 routes.get('/feed/:username', postsController.getFeed)
 routes.get('/posts', postsController.getPosts)
 routes.get('/posts/:username', postsController.getPostsByUser)

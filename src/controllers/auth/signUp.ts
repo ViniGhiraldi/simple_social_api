@@ -1,18 +1,24 @@
-import { UsersCreateInput } from 'Prisma'
+import { IFile } from './../../models/IFile';
+import { UsersCreateInput } from 'Prisma';
 import { RequestHandler } from "express";
 import { StatusCodes } from 'http-status-codes';
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
 import { passwordHashed } from '../../services/crypto';
 
+interface IFiles{
+    profilePicture?: Express.Multer.File[];
+    banner?: Express.Multer.File[];
+}
+
 export const signUp: RequestHandler = async (req, res) => {
+    const { profilePicture, banner } = req.files as IFiles
+
     const bodyValidation = z.object({
         username: z.string().min(3).max(20).toLowerCase(),
         nickname: z.string().min(3).max(30),
         email: z.string().email().toLowerCase(),
         password: z.string().min(6),
-        profilePicture: z.string().optional(),
-        banner: z.string().optional(),
         description: z.string().optional()
     })
 
@@ -21,9 +27,75 @@ export const signUp: RequestHandler = async (req, res) => {
     user.password = await passwordHashed(user.password);
 
     try {
-        const data = await prisma.users.create({
-            data: user as UsersCreateInput
-        })
+        let data;
+
+        if(profilePicture && banner){
+            data = await prisma.users.create({
+                data: {
+                    ...user,
+                    profilePicture: {
+                        create: {
+                            name: profilePicture[0].filename,
+                            path: profilePicture[0].path,
+                            size: profilePicture[0].size,
+                            url: `${process.env.IMAGES_URL}/${profilePicture[0].filename}`
+                        }
+                    },
+                    banner: {
+                        create: {
+                            name: banner[0].filename,
+                            path: banner[0].path,
+                            size: banner[0].size,
+                            url: `${process.env.IMAGES_URL}/${banner[0].filename}`
+                        }
+                    }
+                },
+                include: {
+                    profilePicture: true,
+                    banner: true
+                }
+            })
+        } else if(profilePicture){
+            data = await prisma.users.create({
+                data: {
+                    ...user,
+                    profilePicture: {
+                        create: {
+                            name: profilePicture[0].filename,
+                            path: profilePicture[0].path,
+                            size: profilePicture[0].size,
+                            url: `${process.env.IMAGES_URL}/${profilePicture[0].filename}`
+                        }
+                    },
+                },
+                include: {
+                    profilePicture: true
+                }
+            })
+        } else if(banner){
+            data = await prisma.users.create({
+                data: {
+                    ...user,
+                    banner: {
+                        create: {
+                            name: banner[0].filename,
+                            path: banner[0].path,
+                            size: banner[0].size,
+                            url: `${process.env.IMAGES_URL}/${banner[0].filename}`
+                        }
+                    },
+                },
+                include: {
+                    banner: true
+                }
+            })
+        } else{
+            data = await prisma.users.create({
+                data: {
+                    ...user,
+                }
+            })
+        }
 
         return res.status(StatusCodes.CREATED).json({data})
     } catch (error) {

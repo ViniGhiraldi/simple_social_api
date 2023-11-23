@@ -15,8 +15,8 @@ model Users {
   nickname String
   email String @unique
   password String
-  profilePicture String?
-  banner String?
+  profilePicture Image? @relation("ProfilePicture")
+  banner Image? @relation("Banner")
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -42,7 +42,7 @@ model UsersFollows {
 
 model Posts {
   id Int @id @default(autoincrement())
-  media String?
+  media Image[]
   title String
   user Users @relation(fields: [userId], references: [username], onDelete: Cascade)
   userId String
@@ -75,4 +75,18 @@ model PostsComments {
   createdAt DateTime @default(now())
 
   @@index([id, userId, postId, comment])
+}
+
+model Image {
+  id String @id @default(uuid())
+  path String
+  size Int
+  name String
+  url String
+  userProfilePicture Users? @relation("ProfilePicture", fields: [profilePicture], references: [username], onDelete: Cascade)
+  profilePicture String? @unique
+  userBanner Users? @relation("Banner", fields: [banner], references: [username], onDelete: Cascade)
+  banner String? @unique
+  postMedia Posts? @relation(fields: [postId], references: [id])
+  postId Int?
 }

@@ -4,8 +4,8 @@ CREATE TABLE "Users" (
     "nickname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "profilePicture" JSONB NOT NULL,
-    "banner" JSONB NOT NULL,
+    "profilePicture" TEXT,
+    "banner" TEXT,
     "description" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE "UsersFollows" (
 -- CreateTable
 CREATE TABLE "Posts" (
     "id" SERIAL NOT NULL,
-    "media" JSONB,
+    "media" TEXT,
     "title" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -73,22 +73,22 @@ CREATE INDEX "PostsUsersOptions_userId_postId_liked_favorited_idx" ON "PostsUser
 CREATE INDEX "PostsComments_id_userId_postId_comment_idx" ON "PostsComments"("id", "userId", "postId", "comment");
 
 -- AddForeignKey
-ALTER TABLE "UsersFollows" ADD CONSTRAINT "UsersFollows_followerUserId_fkey" FOREIGN KEY ("followerUserId") REFERENCES "Users"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UsersFollows" ADD CONSTRAINT "UsersFollows_followerUserId_fkey" FOREIGN KEY ("followerUserId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "UsersFollows" ADD CONSTRAINT "UsersFollows_followedUserId_fkey" FOREIGN KEY ("followedUserId") REFERENCES "Users"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UsersFollows" ADD CONSTRAINT "UsersFollows_followedUserId_fkey" FOREIGN KEY ("followedUserId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Posts" ADD CONSTRAINT "Posts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Posts" ADD CONSTRAINT "Posts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PostsUsersOptions" ADD CONSTRAINT "PostsUsersOptions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PostsUsersOptions" ADD CONSTRAINT "PostsUsersOptions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PostsUsersOptions" ADD CONSTRAINT "PostsUsersOptions_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PostsUsersOptions" ADD CONSTRAINT "PostsUsersOptions_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;

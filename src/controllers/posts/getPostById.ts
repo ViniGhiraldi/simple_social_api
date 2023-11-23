@@ -17,6 +17,7 @@ export const getPostById: RequestHandler = async (req, res) => {
             },
             include: {
                 _count: true,
+                media: true,
                 postComments: {
                     include: {
                         user: {

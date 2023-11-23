@@ -51,7 +51,9 @@ export const getUsers: RequestHandler = async (req, res) => {
                 followerUser: follower,
                 followedUser: followed,
                 postComments: comments,
-                userPost: options
+                userPost: options,
+                banner: true,
+                profilePicture: true
             }
         })
     

@@ -1,11 +1,18 @@
 import { RequestHandler } from "express";
 import { z } from "zod";
+import { ImageCreateManyPostMediaInput } from 'Prisma';
 import { prisma } from "../../lib/prisma";
 import { StatusCodes } from 'http-status-codes';
 
 export const createPost: RequestHandler = async (req, res) => {
+    const files = req.files as Express.Multer.File[];
+    
+    const mediaData = files.map(val => {
+        return {name: val.filename, size: val.size, path: val.path, url: `${process.env.IMAGES_URL}/${val.filename}`}
+    })
+    console.log(mediaData);
+
     const bodyValidation = z.object({
-        media: z.string().optional(),
         title: z.string(),
         /* userId: z.string().toLowerCase() */
     })
@@ -13,19 +20,49 @@ export const createPost: RequestHandler = async (req, res) => {
     const post = bodyValidation.parse(req.body)
 
     try {
-        const data = await prisma.posts.create({
-            data: {...post, userId: req.headers.userId as string},
-            include: {
-                _count: true,
-                user: {
-                    select: {
-                        username: true,
-                        nickname: true,
-                        profilePicture: true
+        let data;
+
+        if(mediaData.length > 0){
+            data = await prisma.posts.create({
+                data: {
+                    ...post,
+                    userId: req.headers.userId as string,
+                    media: {
+                        createMany: {
+                            data: mediaData as ImageCreateManyPostMediaInput[]
+                        }
+                    }
+                },
+                include: {
+                    _count: true,
+                    user: {
+                        select: {
+                            username: true,
+                            nickname: true,
+                            profilePicture: true
+                        }
+                    },
+                    media: true
+                }
+            })
+        }else{
+            data = await prisma.posts.create({
+                data: {
+                    ...post,
+                    userId: req.headers.userId as string
+                },
+                include: {
+                    _count: true,
+                    user: {
+                        select: {
+                            username: true,
+                            nickname: true,
+                            profilePicture: true
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
 
         return res.status(StatusCodes.CREATED).json({data})
     } catch (error) {
