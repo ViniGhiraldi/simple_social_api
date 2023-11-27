@@ -57,6 +57,7 @@ export const getFeed: RequestHandler = async (req, res) => {
                 },
                 include: {
                     _count: true,
+                    media: true,
                     postComments: {
                         orderBy: {
                             id: "desc"
