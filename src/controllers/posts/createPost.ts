@@ -10,7 +10,6 @@ export const createPost: RequestHandler = async (req, res) => {
     const mediaData = files.map(val => {
         return {name: val.filename, size: val.size, path: val.path, url: `${process.env.IMAGES_URL}/${val.filename}`}
     })
-    console.log(mediaData);
 
     const bodyValidation = z.object({
         title: z.string(),
@@ -29,7 +28,7 @@ export const createPost: RequestHandler = async (req, res) => {
                     userId: req.headers.userId as string,
                     media: {
                         createMany: {
-                            data: mediaData as ImageCreateManyPostMediaInput[]
+                            data: mediaData
                         }
                     }
                 },

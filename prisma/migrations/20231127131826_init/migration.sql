@@ -4,8 +4,6 @@ CREATE TABLE "Users" (
     "nickname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "profilePicture" TEXT,
-    "banner" TEXT,
     "description" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -25,7 +23,6 @@ CREATE TABLE "UsersFollows" (
 -- CreateTable
 CREATE TABLE "Posts" (
     "id" SERIAL NOT NULL,
-    "media" TEXT,
     "title" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -54,6 +51,20 @@ CREATE TABLE "PostsComments" (
     CONSTRAINT "PostsComments_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Image" (
+    "id" TEXT NOT NULL,
+    "path" TEXT NOT NULL,
+    "size" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "profilePicture" TEXT,
+    "banner" TEXT,
+    "postId" INTEGER,
+
+    CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_email_key" ON "Users"("email");
 
@@ -71,6 +82,12 @@ CREATE INDEX "PostsUsersOptions_userId_postId_liked_favorited_idx" ON "PostsUser
 
 -- CreateIndex
 CREATE INDEX "PostsComments_id_userId_postId_comment_idx" ON "PostsComments"("id", "userId", "postId", "comment");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Image_profilePicture_key" ON "Image"("profilePicture");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Image_banner_key" ON "Image"("banner");
 
 -- AddForeignKey
 ALTER TABLE "UsersFollows" ADD CONSTRAINT "UsersFollows_followerUserId_fkey" FOREIGN KEY ("followerUserId") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -92,3 +109,12 @@ ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_userId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "PostsComments" ADD CONSTRAINT "PostsComments_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Image" ADD CONSTRAINT "Image_profilePicture_fkey" FOREIGN KEY ("profilePicture") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Image" ADD CONSTRAINT "Image_banner_fkey" FOREIGN KEY ("banner") REFERENCES "Users"("username") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Image" ADD CONSTRAINT "Image_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Posts"("id") ON DELETE SET NULL ON UPDATE CASCADE;
