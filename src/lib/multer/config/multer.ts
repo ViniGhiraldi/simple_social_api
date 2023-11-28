@@ -20,6 +20,7 @@ const multerConfig: multer.Options = {
     }),
     limits: {
         fileSize: 2 * 1024 * 1024,
+        files: 9
     },
     fileFilter: (req, file, cb) => {
         const allowedMimes = [
