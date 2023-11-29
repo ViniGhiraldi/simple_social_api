@@ -87,6 +87,6 @@ model Image {
   profilePicture String? @unique
   userBanner Users? @relation("Banner", fields: [banner], references: [username], onDelete: Cascade)
   banner String? @unique
-  postMedia Posts? @relation(fields: [postId], references: [id])
+  postMedia Posts? @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId Int?
 }

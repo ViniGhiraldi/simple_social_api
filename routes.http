@@ -7,8 +7,6 @@ Content-Type: application/json
     "nickname": "Gustavo Guanabara",
     "email": "guanabara@email.com",
     "password": "123456",
-    "profilePicture": "https://github.com/professorguanabara.png",
-    //"banner": "",
     "description": "Nerd por natureza. Professor por vocação. Estou aqui para compartilhar conteúdos para iniciantes em Tecnologia."
 }
 
@@ -19,7 +17,7 @@ POST http://localhost:3333/signin
 Content-Type: application/json
 
 {
-    "uniquekey": "vini",
+    "uniquekey": "renatosantos",
     "password": "123456"
 }
 
@@ -54,8 +52,6 @@ Authorization: Bearer
     "nickname": "Endrick 'Little'",
     "email": "endrick@contato.com",
     "password": "123456",
-    "profilePicture": "{}",
-    "banner": "{}",
     "description": "Sou o Endrick! Camisa 9 do Palmeiras e futuro jogador do Real Madrid"
 }
 
@@ -70,10 +66,10 @@ Authorization: Bearer
 # @name create-follow
 POST http://localhost:3333/follow
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imx2c291emEiLCJlbWFpbCI6Imx2c291emFAZW1haWwuY29tIiwiaWF0IjoxNzAwMDExMTcwLCJleHAiOjE3MDAwMTQ3NzB9.E5szpmusExnAJKIRxxcAPadn_zXBQ3UhYQ86oQkRjRg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJlbmF0b3NhbnRvcyIsImVtYWlsIjoicmVuYXRvc2FudG9zQGVtYWlsLmNvbSIsImlhdCI6MTcwMTI2Mzg2OCwiZXhwIjoxNzAxMjY3NDY4fQ.-ZrFa8NDfAAneCK23XX5TLOHa_6XVILTCrK1uPhNofk
 
 {
-    "followed": "profguanabara"
+    "followed": "vinighiraldi"
 }
 
 ###
