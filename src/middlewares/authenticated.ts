@@ -19,8 +19,8 @@ export const authenticated: RequestHandler = async (req, res, next) => {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: {default: StatusEnum.INTERNAL_SERVER_ERROR}})
     }
 
-    req.headers.userId = tokenResult.username.toLowerCase();
-    req.headers.userEmail = tokenResult.email.toLowerCase();
+    req.headers.userId = tokenResult.username.toLowerCase().trim();
+    req.headers.userEmail = tokenResult.email.toLowerCase().trim();
 
     return next();
 }

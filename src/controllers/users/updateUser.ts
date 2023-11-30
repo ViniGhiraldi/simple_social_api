@@ -12,9 +12,9 @@ export const updateUser: RequestHandler = async (req, res) => {
     const { profilePicture, banner } = req.files as IFiles;
 
     const bodyValidation = z.object({
-        nickname: z.string().min(3).max(30),
-        email: z.string().email().toLowerCase(),
-        password: z.string().min(6),
+        nickname: z.string().min(3).max(30).trim(),
+        email: z.string().email().toLowerCase().trim(),
+        password: z.string().min(6).trim(),
         description: z.string().optional()
     })
     

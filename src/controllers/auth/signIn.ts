@@ -8,8 +8,8 @@ import { StatusEnum } from '../../enums/statusEnum'
 
 export const signIn: RequestHandler = async (req, res) => {
     const bodyValidation = z.object({
-        uniquekey: z.string().toLowerCase(),
-        password: z.string()
+        uniquekey: z.string().min(5).toLowerCase().trim(),
+        password: z.string().min(6).trim()
     })
 
     const { uniquekey, password } = bodyValidation.parse(req.body)

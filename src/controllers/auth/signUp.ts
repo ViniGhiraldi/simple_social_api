@@ -1,5 +1,3 @@
-import { IFile } from './../../models/IFile';
-import { UsersCreateInput } from 'Prisma';
 import { RequestHandler } from "express";
 import { StatusCodes } from 'http-status-codes';
 import { z } from "zod";
@@ -15,10 +13,10 @@ export const signUp: RequestHandler = async (req, res) => {
     const { profilePicture, banner } = req.files as IFiles
 
     const bodyValidation = z.object({
-        username: z.string().min(3).max(20).toLowerCase(),
-        nickname: z.string().min(3).max(30),
-        email: z.string().email().toLowerCase(),
-        password: z.string().min(6),
+        username: z.string().min(5).max(20).toLowerCase().trim(),
+        nickname: z.string().min(3).max(30).trim(),
+        email: z.string().email().toLowerCase().trim(),
+        password: z.string().min(6).trim(),
         description: z.string().optional()
     })
 
@@ -97,7 +95,7 @@ export const signUp: RequestHandler = async (req, res) => {
             })
         }
 
-        return res.status(StatusCodes.CREATED).json({data})
+        return res.status(StatusCodes.CREATED).json({data: {...data, password: undefined}})
     } catch (error) {
         console.log(error)
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
