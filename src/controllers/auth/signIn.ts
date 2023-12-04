@@ -32,7 +32,15 @@ export const signIn: RequestHandler = async (req, res) => {
             profilePicture: true,
             password: true,
             description: true,
-            banner: true
+            banner: true,
+            _count: true,
+            followedUser: true,
+            followerUser: true,
+            posts: {
+                include: {
+                    media: true
+                }
+            }
         }
     })
 

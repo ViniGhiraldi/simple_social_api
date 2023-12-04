@@ -38,7 +38,7 @@ Content-Type: application/json
 ###
 
 # @name get-user
-GET http://localhost:3333/user/locoabreu?posts=true
+GET http://localhost:3333/user/vinighiraldi?posts=true&follower=true&followed=true&
 
 ###
 
