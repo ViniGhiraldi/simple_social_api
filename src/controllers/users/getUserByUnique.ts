@@ -38,7 +38,11 @@ export const getUserByUnique: RequestHandler = async (req, res) => {
             },
             include: {
                 _count: true,
-                posts: posts,
+                posts: {
+                    orderBy: {
+                        createdAt: 'desc'
+                    }
+                },
                 followerUser: follower,
                 followedUser: followed,
                 postComments: comments,

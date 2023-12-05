@@ -39,6 +39,9 @@ export const signIn: RequestHandler = async (req, res) => {
             posts: {
                 include: {
                     media: true
+                },
+                orderBy: {
+                    createdAt: 'desc'
                 }
             }
         }
